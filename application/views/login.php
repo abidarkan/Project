@@ -11,11 +11,8 @@
     <title>SB Admin 2 - Login</title>
 
     <!-- Custom fonts for this template-->
-    <link href="<?php echo base_url('assets'); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-        type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="<?php echo base_url('assets'); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url('assets'); ?>/css/sb-admin-2.min.css" rel="stylesheet">
@@ -45,9 +42,7 @@
     </style>
 </head>
 
-<body class="bg-image"
-    style="background-size: cover; background-repeat: no-repeat; background-image: url('<?php echo base_url('assets/img/Background.jpg'); ?>'); height: 100vh"
-    onload="onLoad()">
+<body class="bg-image" style="background-size: cover; background-repeat: no-repeat; background-image: url('<?php echo base_url('assets/img/Background.jpg'); ?>'); height: 100vh" onload="onLoad()">
 
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
 
@@ -69,67 +64,48 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login"
-                                                role="tab" aria-controls="login" aria-selected="true">Login Staff</a>
+                                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login Staff</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="register-tab" data-toggle="tab" href="#register"
-                                                role="tab" aria-controls="register" aria-selected="false">Login
-                                                Editor</a>
+                                            <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Login Editor</a>
                                         </li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content" id="myTabContent">
                                         <!-- Login Staff Section -->
-                                        <div class="tab-pane fade show active" id="login" role="tabpanel"
-                                            aria-labelledby="login-tab">
-                                            <form class="user mt-4"
-                                                action="<?php echo site_url('Login_Control/cek_login_Staff'); ?>"
-                                                method="post">
+                                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                            <form class="user mt-4" action="<?php echo site_url('Login_Control/cek_login_Staff'); ?>" method="post">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control form-control-user"
-                                                        id="exampleInputEmail" aria-describedby="emailHelp"
-                                                        placeholder="Email" name="emailStaff">
+                                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" name="emailStaff">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control form-control-user"
-                                                        id="exampleInputPassword" placeholder="Password"
-                                                        name="passwordStaff">
+                                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="passwordStaff">
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                                     Login
                                                 </button>
                                                 <hr>
-                                                <a href="#" class="btn btn-google btn-user btn-block"
-                                                    onclick="signInWithGoogle()">
+                                                <a href="#" class="btn btn-google btn-user btn-block" onclick="signInWithGoogle()">
                                                     <i class="fab fa-google fa-fw"></i> Login Dengan Email PCR
                                                 </a>
                                             </form>
                                         </div>
                                         <!-- Login Editor Section -->
-                                        <div class="tab-pane fade" id="register" role="tabpanel"
-                                            aria-labelledby="register-tab">
-                                            <form class="user mt-4"
-                                                action="<?php echo site_url('Login_Control/cek_login_Editor'); ?>"
-                                                method="post">
+                                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                            <form class="user mt-4" action="<?php echo site_url('Login_Control/cek_login_Editor'); ?>" method="post">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control form-control-user"
-                                                        id="exampleInputEmail2" aria-describedby="emailHelp"
-                                                        placeholder="Email" name="emailEditor">
+                                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Email" name="emailEditor">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control form-control-user"
-                                                        id="exampleInputPassword2" placeholder="Password"
-                                                        name="passwordEditor">
+                                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword2" placeholder="Password" name="passwordEditor">
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                                     Login
                                                 </button>
                                                 <hr>
-                                                <a href="#" class="btn btn-google btn-user btn-block"
-                                                    onclick="signInWithGoogle()">
+                                                <a href="#" class="btn btn-google btn-user btn-block" onclick="signInWithGoogle()">
                                                     <i class="fab fa-google fa-fw"></i> Login Dengan Email PCR
                                                 </a>
                                             </form>
@@ -208,12 +184,10 @@
                 console.log('ID Token: ' + id_token);
 
                 // Redirect or perform other actions
-                window.location.href = 'http://localhost/Project/index.php/Welcome/index.#'; // Your redirect URI
+                window.location.href = 'http://localhost/Project/Login_Control/index'; // Your redirect URI
             });
         }
     </script>
-
-
 </body>
 
 </html>
