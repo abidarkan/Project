@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Data Pengajuan</h1>
+    <h1 class="h3 mb-4 text-gray-800">Daftar Kerja</h1>
 
 </div>
 <!-- /.container-fluid -->
@@ -17,13 +17,14 @@
                     <a href="<?= site_url('Staff/pengajuan?statusFilter=') ?>"
                         class="btn btn-primary <?= !isset($_GET['statusFilter']) ? 'active' : '' ?>">Semua</a>
                     <a href="<?= site_url('Staff/pengajuan?statusFilter=DIAJUKAN') ?>"
-                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'DIAJUKAN' ? 'active' : '' ?>">Diajukan</a>
-                    <a href="<?= site_url('Staff/pengajuan?statusFilter=SEDANG DIREVIEW') ?>"
-                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'SEDANG DIREVIEW' ? 'active' : '' ?>">Direview</a>
+                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'DIAJUKAN' ? 'active' : '' ?>">Sedang
+                        dikerjakan</a>
+                    <a href="<?= site_url('Staff/pengajuan?statusFilter=DIAJUKAN') ?>"
+                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'DIAJUKAN' ? 'active' : '' ?>">Belum Dikerjakan</a>
+
                     <a href="<?= site_url('Staff/pengajuan?statusFilter=DITERIMA') ?>"
-                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'DITERIMA' ? 'active' : '' ?>">Diterima</a>
-                    <a href="<?= site_url('Staff/pengajuan?statusFilter=DITOLAK') ?>"
-                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'DITOLAK' ? 'active' : '' ?>">Ditolak</a>
+                        class="btn btn-primary <?= isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'DITERIMA' ? 'active' : '' ?>">Tuntas</a>
+
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,10 +37,10 @@
                                 <th>Tindakan</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                             <?php
-                                $no = 1;
-                                foreach ($all_pengajuan as $ap) :
+                            $no = 1;
+                            foreach ($all_pengajuan as $ap):
                                 ?>
                             <tr>
                                 <td><?= $no++; ?></td>
@@ -51,25 +52,25 @@
                                         data-toggle="modal" data-target="#exampleModal<?= $ap['ID_BUKU'] ?>">
                                         <i class="fas fa-pen-alt"></i>
                                     </a>
-                                    <a href="" class="btn btn-primary btn-sm" title="Tugaskan Editor" data-toggle="modal"
+                                    <a href="" class="btn btn-primary btn-sm" title="Assign Editor" data-toggle="modal"
                                         data-target="#reviewModal<?= $ap['ID_BUKU'] ?>">
                                         <i class="fas fa-tasks"></i>
                                     </a>
-                                    <a href="<?= site_url('Staff/del_pengajuan/'.$ap['ID_BUKU']) ?>" title="Hapus"
+                                    <a href="<?= site_url('Staff/del_pengajuan/' . $ap['ID_BUKU']) ?>" title="trash"
                                         class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Apakah anda yakin ingin menghapus pengajuan InputTahunTerbit???');">
+                                        onclick="return confirm('Are you sure you want to delete this item?');">
                                         <i class="fas fa-solid fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
                             <?php
-                                endforeach;
+                            endforeach;
                             ?>
                         </tbody>
                     </table>
                 </div>
 
-                <?php foreach ($all_pengajuan as $ap) : ?>
+               <!-- <?php foreach ($all_pengajuan as $ap): ?>
                 <div class="modal fade bd-example-modal-lg" id="exampleModal<?= $ap['ID_BUKU'] ?>" tabindex="-1"
                     role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -81,7 +82,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="<?= site_url('Staff/update_pengajuan/'.$ap['ID_BUKU']) ?>" method="post"
+                                <form action="<?= site_url('Staff/update_pengajuan/' . $ap['ID_BUKU']) ?>" method="post"
                                     enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-xl-6 col-md-6 mb-6">
@@ -152,6 +153,8 @@
                                                 <label for="InputKategori<?= $ap['ID_BUKU'] ?>">Kategori</label>
                                                 <input type="text" class="form-control"
                                                     id="InputKategori<?= $ap['ID_BUKU'] ?>" name="kategori"
+                                                  
+                                                  
                                                     value="<?= $ap['KATEGORI'] ?>">
                                             </div>
                                         </div>
@@ -222,13 +225,13 @@
                     </div>
                 </div>
                 <?php endforeach; ?>
-                <?php foreach ($all_pengajuan as $ap) : ?>
+                <!-- <?php foreach ($all_pengajuan as $ap): ?>
                 <div class="modal fade" id="reviewModal<?= $ap['ID_BUKU'] ?>" tabindex="-1" role="dialog"
                     aria-labelledby="reviewModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="reviewModalLabel">Tugaskan Editor</h5>
+                                <h5 class="modal-title" id="reviewModalLabel">Assign Editor</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -250,52 +253,52 @@
                         </div>
                     </div>
                 </div>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
+                </div>
             </div>
         </div>
     </div>
-</div>
-</script>
-<!-- Add Data Modal -->
-<div class="modal fade" id="addDataModal" tabindex="-1" role="dialog" aria-labelledby="addDataModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addDataModalLabel">Tambah Data Pengajuan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    </script>
+    <!-- Add Data Modal -->
+    <div class="modal fade" id="addDataModal" tabindex="-1" role="dialog" aria-labelledby="addDataModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDataModalLabel">Tambah Data Pengajuan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= site_url('Staff/add_pengajuan') ?>" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="judul">Judul</label>
+                            <input type="text" class="form-control" id="judul" name="judul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="penulis">Penulis</label>
+                            <input type="text" class="form-control" id="penulis" name="penulis" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="In Progress">Sedang Berlangsung</option>
+                                <option value="Edited">Edited</option>
+                                <option value="Completed">Selesai</option>
+                                <option value="Rejected">Ditolak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Upload File</label>
+                            <input type="file" class="form-control" id="file" name="file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
-            <form action="<?= site_url('Staff/add_pengajuan') ?>" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="judul">Judul</label>
-                        <input type="text" class="form-control" id="judul" name="judul" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="penulis">Penulis</label>
-                        <input type="text" class="form-control" id="penulis" name="penulis" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="form-control" id="status" name="status">
-                            <option value="In Progress">Sedang Berlangsung</option>
-                            <option value="Edited">Diedit</option>
-                            <option value="Completed">Selesai</option>
-                            <option value="Rejected">Ditolak</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="file">Upload File</label>
-                        <input type="file" class="form-control" id="file" name="file">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>

@@ -50,8 +50,8 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <li class="nav-item <?= ($this->uri->uri_string() == 'Staff/pengajuan') ? 'active' : '' ?>">
-                <a class="nav-link" href="<?php echo site_url('Staff/pengajuan'); ?>">
+            <li class="nav-item <?= ($this->uri->uri_string() == 'Editor/Editor_Daftar_Kerja') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?php echo site_url('Editor/Editor_Daftar_Kerja'); ?>">
                     <i class="fas fa-book-open"></i>
                     <span>Daftar Kerja</span></a>
             </li>
@@ -59,7 +59,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Manage User</span>
+                    <span>Kelola User</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -240,7 +240,7 @@
                                     class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->session->userdata('user_name'); ?>
                                     |
                                     Editor</span>
-                                <img class="img-profile rounded-circle"
+                                <img class="img-profile rounded-circle" style="width: 50px; height: 50px;"
                                     src="<?php echo base_url('assets'); ?>/img/Editor.jpeg">
 
                             </a>

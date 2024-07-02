@@ -32,5 +32,8 @@ class Editor extends CI_Controller {
 	public function Editor_View_Dashboard(){
 		$this->load->view('Editor_Dashboard');
 	}
-	
+
+	public function Editor_Daftar_Kerja(){
+		$this->load->view('Editor_Daftar_Kerja');
+	}
 }

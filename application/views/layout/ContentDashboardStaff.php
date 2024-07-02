@@ -45,10 +45,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" id="generateReport"
-                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                            <i class="fas fa-download fa-sm text-white-50"></i> Buat laporan
-                        </a>
+
                     </div>
 
                     <!-- Content Row -->
@@ -81,7 +78,8 @@
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 DIEDIT</div>
                                             <div class="h5 mb-0 font-weight-bold text-warning">
-                                                <?php echo ($count_edited); ?></div>
+                                                <?php echo ($count_edited); ?>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-edit fa-2x text-warning"></i>
@@ -100,7 +98,8 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 SELESAI</div>
                                             <div class="h5 mb-0 font-weight-bold text-success">
-                                                <?php echo ($count_completed); ?></div>
+                                                <?php echo ($count_completed); ?>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-check-circle fa-2x text-success"></i>
@@ -119,7 +118,8 @@
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 DITOLAK</div>
                                             <div class="h5 mb-0 font-weight-bold text-danger">
-                                                <?php echo ($count_rejected); ?></div>
+                                                <?php echo ($count_rejected); ?>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-times-circle fa-2x text-danger"></i>
@@ -153,11 +153,11 @@
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($recent as $rct): ?>
-                                                <tr>
-                                                    <td><?= $rct['JUDUL'] ?></td>
-                                                    <td><?= $rct['NAMA_PENULIS'] ?></td>
-                                                    <td><?= $rct['STATUS'] ?></td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><?= $rct['JUDUL'] ?></td>
+                                                        <td><?= $rct['NAMA_PENULIS'] ?></td>
+                                                        <td><?= $rct['STATUS'] ?></td>
+                                                    </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -206,48 +206,48 @@
 
     <!-- jsPDF script -->
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const {
-            jsPDF
-        } = window.jspdf;
+        document.addEventListener("DOMContentLoaded", function () {
+            const {
+                jsPDF
+            } = window.jspdf;
 
-        document.getElementById('generateReport').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah link default
+            document.getElementById('generateReport').addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah link default
 
-            const doc = new jsPDF();
+                const doc = new jsPDF();
 
-            // Menambahkan judul
-            doc.setFontSize(18);
-            doc.text('Dashboard Report', 10, 10);
+                // Menambahkan judul
+                doc.setFontSize(18);
+                doc.text('Dashboard Report', 10, 10);
 
-            // Menambahkan ringkasan
-            doc.setFontSize(12);
-            doc.text('Ringkasan:', 10, 20);
-            doc.text('SEDANG BERJALAN: ' + <?php echo json_encode($count); ?>, 10, 30);
-            doc.text('DIEDIT: ' + <?php echo json_encode($count_edited); ?>, 10, 40);
-            doc.text('SELESAI: ' + <?php echo json_encode($count_completed); ?>, 10, 50);
-            doc.text('DITOLAK: ' + <?php echo json_encode($count_rejected); ?>, 10, 60);
+                // Menambahkan ringkasan
+                doc.setFontSize(12);
+                doc.text('Ringkasan:', 10, 20);
+                doc.text('SEDANG BERJALAN: ' + <?php echo json_encode($count); ?>, 10, 30);
+                doc.text('DIEDIT: ' + <?php echo json_encode($count_edited); ?>, 10, 40);
+                doc.text('SELESAI: ' + <?php echo json_encode($count_completed); ?>, 10, 50);
+                doc.text('DITOLAK: ' + <?php echo json_encode($count_rejected); ?>, 10, 60);
 
-            // Menambahkan tabel
-            doc.text('Pengajuan Terbaru:', 10, 70);
-            const headers = [
-                ['Judul', 'Penulis', 'Status']
-            ];
-            const rows = <?php echo json_encode(array_map(function($rct) {
+                // Menambahkan tabel
+                doc.text('Pengajuan Terbaru:', 10, 70);
+                const headers = [
+                    ['Judul', 'Penulis', 'Status']
+                ];
+                const rows = <?php echo json_encode(array_map(function ($rct) {
                     return [$rct['JUDUL'], $rct['NAMA_PENULIS'], $rct['STATUS']];
                 }, $recent)); ?>;
 
-            doc.autoTable({
-                head: headers,
-                body: rows,
-                startY: 80,
-                theme: 'striped'
-            });
+                doc.autoTable({
+                    head: headers,
+                    body: rows,
+                    startY: 80,
+                    theme: 'striped'
+                });
 
-            // Download PDF
-            doc.save('dashboard_report.pdf');
+                // Download PDF
+                doc.save('dashboard_report.pdf');
+            });
         });
-    });
     </script>
 
 </body>

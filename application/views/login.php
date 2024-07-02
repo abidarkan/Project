@@ -21,27 +21,27 @@
     <link href="<?php echo base_url('assets'); ?>/css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
-    .card {
-        max-width: 600px;
-        width: 130%;
-        margin: auto;
-        background-color: rgba(255, 255, 255, 0.8);
-        /* White background with 80% opacity */
-    }
-
-    .tab-content {
-        padding-top: 20px;
-    }
-
-    @media (max-width: 767px) {
         .card {
-            margin: 20px;
+            max-width: 600px;
+            width: 130%;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* White background with 80% opacity */
         }
 
-        .p-5 {
-            padding: 2rem !important;
+        .tab-content {
+            padding-top: 20px;
         }
-    }
+
+        @media (max-width: 767px) {
+            .card {
+                margin: 20px;
+            }
+
+            .p-5 {
+                padding: 2rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -96,14 +96,7 @@
                                                         id="exampleInputPassword" placeholder="Password"
                                                         name="passwordStaff">
                                                 </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox small">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="customCheck">
-                                                        <label class="custom-control-label" for="customCheck">Remember
-                                                            Me</label>
-                                                    </div>
-                                                </div>
+
                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                                     Login
                                                 </button>
@@ -130,14 +123,7 @@
                                                         id="exampleInputPassword2" placeholder="Password"
                                                         name="passwordEditor">
                                                 </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox small">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="customCheck2">
-                                                        <label class="custom-control-label" for="customCheck2">Remember
-                                                            Me</label>
-                                                    </div>
-                                                </div>
+
                                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                                     Login
                                                 </button>
@@ -165,25 +151,25 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <?php if ($this->session->flashdata('error')): ?>
-    <script>
-    Swal.fire({
-        title: 'Oops...',
-        text: '<?php echo $this->session->flashdata('error'); ?>',
-        icon: 'error',
-        confirmButtonText: 'OK'
-    });
-    </script>
+        <script>
+            Swal.fire({
+                title: 'Oops...',
+                text: '<?php echo $this->session->flashdata('error'); ?>',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
     <?php endif; ?>
 
     <?php if ($this->session->flashdata('success')): ?>
-    <script>
-    Swal.fire({
-        title: 'Sukses',
-        text: '<?php echo $this->session->flashdata('success'); ?>',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
-    </script>
+        <script>
+            Swal.fire({
+                title: 'Sukses',
+                text: '<?php echo $this->session->flashdata('success'); ?>',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
     <?php endif; ?>
 
     <!-- Bootstrap core JavaScript-->
@@ -200,31 +186,31 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script>
-    function onLoad() {
-        gapi.load('auth2', function() {
-            gapi.auth2.init({
-                client_id: '32560699373-kuvhb8rpcpublvoi5ubk5cm1hj8j2nqc.apps.googleusercontent.com',
+        function onLoad() {
+            gapi.load('auth2', function () {
+                gapi.auth2.init({
+                    client_id: '32560699373-kuvhb8rpcpublvoi5ubk5cm1hj8j2nqc.apps.googleusercontent.com',
+                });
             });
-        });
-    }
+        }
 
-    function signInWithGoogle() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signIn().then(function(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        function signInWithGoogle() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signIn().then(function (googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-            // You can also get the ID token to send to your backend
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log('ID Token: ' + id_token);
+                // You can also get the ID token to send to your backend
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log('ID Token: ' + id_token);
 
-            // Redirect or perform other actions
-            window.location.href = 'http://localhost/Project/index.php/Welcome/index.#'; // Your redirect URI
-        });
-    }
+                // Redirect or perform other actions
+                window.location.href = 'http://localhost/Project/index.php/Welcome/index.#'; // Your redirect URI
+            });
+        }
     </script>
 
 
